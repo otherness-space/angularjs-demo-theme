@@ -56,7 +56,7 @@ app.controller('Main', ['$scope', 'WPService', function($scope, WPService) {
 
 //Content controller
 app.controller('Content', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
-	$http.get('wp-json/?filter[name]=' + $routeParams.slug).success(function(res) {
+	$http.get('wp-json/posts/?filter[name]=' + $routeParams.slug).success(function(res){
 		$scope.post = res[0];
 		document.querySelector('title').innerHTML = res.title.rendered + ' | AngularJS Demo Theme';
 	}).error(function(res, status) {
@@ -77,7 +77,7 @@ app.controller('Content', ['$scope', '$routeParams', '$http', function($scope, $
 //Category controller
 app.controller('Category', ['$scope', '$routeParams', '$http', 'WPService', function($scope, $routeParams, $http, WPService) {
 	WPService.getAllCategories();
-	$http.get('wp-json/wp/v2/categories/?search=' + $routeParams.slug).success(function(res) {
+	$http.get('wp-json/wp/v2/categories/?search=' + $routeParams.slug).success(function(res){
 		if (!res) {
 			document.querySelector('title').innerHTML = 'Category not found | AngularJS Demo Theme';
 			$scope.data.pageTitle = 'Category not found';
