@@ -16,7 +16,7 @@ app.config(['$routeProvider', '$locationProvider', '$httpProvider', function($ro
 		.when('/:slug', {
 			templateUrl: myLocalized.partials + 'content.html',
 			controller: 'Content'
-		});
+		})
 		.when('/category/:slug/', {
 			templateUrl: myLocalized.partials + 'main.html',
 			controller: 'Category'
@@ -56,8 +56,8 @@ app.controller('Main', ['$scope', 'WPService', function($scope, WPService) {
 
 //Content controller
 app.controller('Content', ['$scope', '$routeParams', '$http', function($scope, $routeParams, $http) {
-	$http.get('wp-json/posts/?filter[name]=' + $routeParams.slug).success(function(res){
-		$scope.post = res[0];
+	$http.get('wp-json/posts/?filter[name]=' + $routeParams.slug).success(function(res) {
+		$scope.post = res[0]
 		document.querySelector('title').innerHTML = res.title.rendered + ' | AngularJS Demo Theme';
 	}).error(function(res, status) {
 		if (status === 404) {
